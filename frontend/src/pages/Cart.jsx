@@ -3,8 +3,8 @@ import { useCart } from "../context/CartContext";
 import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe('pk_test_51PSwcqIhhZ6uv6X6w5NV1lqq4HR8jilNWFSAIVKOd01Gf9jhCNAXgCXeiJdjcz4QTNjSHv7aVDyzh1SAa9SfHe2h00ffxmX3fq');
-
+// const stripePromise = loadStripe('pk_test_51QVJ4LKpHN3aaMT5xxaydqn2AoBHjTiM2TfRzxsy8ypZJRHz71YeWcGAnZsYX6ESp94Kc0z3dbkmgKK393DXJwh400zCFtKmil');
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 const Cart = () => {
     const { cartItems, decreaseCartItemQuantity, addToCart, clearCart } = useCart();
 
