@@ -1,4 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+import typography from "@tailwindcss/typography";
+import daisyui from "daisyui";
+import { themes as daisyThemes } from "daisyui/src/theming/themes";
+
 export default {
   content: [
     "./index.html",
@@ -9,8 +13,9 @@ export default {
   },
   darkMode: 'class',
   plugins: [
-    require("@tailwindcss/typography"), require("daisyui")
-  ],  daisyui: {
+    typography, daisyui
+  ],
+  daisyui: {
     themes: [
       {
         mytheme: {
@@ -23,7 +28,7 @@ export default {
       },
       {
         business: {
-          ...require("daisyui/src/theming/themes")["business"],
+          ...daisyThemes["business"],
         },
       },
       "light",
