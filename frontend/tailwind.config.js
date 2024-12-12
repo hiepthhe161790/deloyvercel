@@ -26,11 +26,6 @@ export default {
           "base-100": "#ffffff",
         },
       },
-      {
-        business: {
-          ...daisyThemes["business"],
-        },
-      },
       "light",
       "dark",
       "cupcake",
