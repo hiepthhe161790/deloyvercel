@@ -25,7 +25,7 @@ app.use(cors(corsConfig));
 app.listen(process.env.PORT, () => console.log(`Server running on ${process.env.PORT} PORT`));
 
 mongoose
-    .connect('mongodb+srv://hiepthhe161790:G2yfYiErDCpL0FTL@cluster0.iqtdu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+    .connect('mongodb+srv://hiepthhe161790:G2yfYiErDCpL0FTL@cluster0.iqtdu.mongodb.net/?retryWrites=true&w=majority')
     .then(() => console.log('Database is connected'))
     .catch((error) => console.log(error));
 
