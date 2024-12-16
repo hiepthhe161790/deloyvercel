@@ -76,3 +76,6 @@ app.post('/upload-image', parser.single('file'), (req, res) => {
 app.use('/stripe', stripeRoute)
 app.use('/subscriber', subscriberRoute)
 app.use('/auth', authRouter);
+app.get('/', (req, res) => {
+    res.send('hello');
+});
