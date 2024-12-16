@@ -1,14 +1,14 @@
-import express from "express"
-import { config } from "dotenv"
-import mongoose from "mongoose"
-import { v2 as cloudinary } from "cloudinary"
-import multer from "multer"
-import { CloudinaryStorage } from "multer-storage-cloudinary"
-import productRoute from "./routes/productRoute.js"
-import stripeRoute from "./routes/stripeRoute.js"
-import subscriberRoute from "./routes/subscriberRoute.js"
+import express from "express";
+import { config } from "dotenv";
+import mongoose from "mongoose";
+import cors from "cors";
+import { v2 as cloudinary } from "cloudinary";
+import multer from "multer";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+import productRoute from "./routes/productRoute.js";
+import stripeRoute from "./routes/stripeRoute.js";
+import subscriberRoute from "./routes/subscriberRoute.js";
 import { authRouter } from "./controllers/authController.js";
-import cors = require("cors")
 
 config();
 
@@ -21,7 +21,6 @@ const corsConfig = {
 };
 app.options('', cors(corsConfig));
 app.use(cors(corsConfig));
-
 
 app.listen(process.env.PORT, () => console.log(`Server running on ${process.env.PORT} PORT`));
 
@@ -55,7 +54,7 @@ const storage = new CloudinaryStorage({
 
 const parser = multer({ storage: storage });
 
-//ROUTE FOR UPLOADING THE FILE TO CLOUDINARY
+// ROUTE FOR UPLOADING THE FILE TO CLOUDINARY
 app.post('/upload-image', parser.single('file'), (req, res) => {
     if (!req.file) {
         return res.status(400).send('No file uploaded.');
@@ -73,9 +72,11 @@ app.post('/upload-image', parser.single('file'), (req, res) => {
     }
 });
 
-app.use('/stripe', stripeRoute)
-app.use('/subscriber', subscriberRoute)
+app.use('/stripe', stripeRoute);
+app.use('/subscriber', subscriberRoute);
 app.use('/auth', authRouter);
+
+// Route để trả về "hello"
 app.get('/', (req, res) => {
     res.send('hello');
 });
