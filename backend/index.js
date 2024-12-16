@@ -1,7 +1,6 @@
 import express from "express"
 import { config } from "dotenv"
 import mongoose from "mongoose"
-import cors from "cors"
 import { v2 as cloudinary } from "cloudinary"
 import multer from "multer"
 import { CloudinaryStorage } from "multer-storage-cloudinary"
@@ -9,18 +8,19 @@ import productRoute from "./routes/productRoute.js"
 import stripeRoute from "./routes/stripeRoute.js"
 import subscriberRoute from "./routes/subscriberRoute.js"
 import { authRouter } from "./controllers/authController.js";
-
+import cors = require("cors")
 
 config();
 
 const app = express();
 
-
-app.use(cors({
-    origin: process.env.FRONTEND_URL,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-}));
+const corsConfig = {
+    origin: "*",
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+};
+app.options('', cors(corsConfig));
+app.use(cors(corsConfig));
 
 
 app.listen(process.env.PORT, () => console.log(`Server running on ${process.env.PORT} PORT`));
